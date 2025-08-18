@@ -140,3 +140,5 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTH_USER_MODEL = "usuarios.Usuario"
+
+TELEGRAM_BOT_ACCESS_TOKEN = "8246717580:AAFnzGDwkn9D5l7uW4FzWrSGz4uQF0N6dbU"
