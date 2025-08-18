@@ -25,7 +25,12 @@ SECRET_KEY = "django-insecure-*$vk=(oap^zw_%_biac$qw51ts3vxp)ourk6@+rpuxdrivpn&j
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    # Seu domínio de produção, por exemplo: "seusite.com"
+    "8f50f3e698fa.ngrok-free.app", # Adicione o domínio do ngrok aqui
+    "127.0.0.1",
+    "localhost"
+]
 
 
 # Application definition
@@ -142,3 +147,4 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 AUTH_USER_MODEL = "usuarios.Usuario"
 
 TELEGRAM_BOT_ACCESS_TOKEN = "8246717580:AAFnzGDwkn9D5l7uW4FzWrSGz4uQF0N6dbU"
+TELEGRAM_BOT_WEBHOOK_SECRET = "t5nULUJHRs5bkbQXGdQD9Y7texcJTkL1cWURSPbSesc"
