@@ -17,7 +17,7 @@ class ChatSerializer(serializers.Serializer):
 # Serializer para a mensagem
 class MessageSerializer(serializers.Serializer):
     message_id = serializers.IntegerField()
-    from_user = UserSerializer(source='from', read_only=True)  # Mapeia o campo 'from' para 'from_user'
+    from_user = UserSerializer(source='from', read_only=True)
     chat = ChatSerializer()
     date = serializers.IntegerField()
     text = serializers.CharField(max_length=4096, allow_blank=True, required=False)

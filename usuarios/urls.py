@@ -1,13 +1,7 @@
 from django.urls import path
-from rest_framework_simplejwt.views import (TokenObtainPairView,
-                                             TokenRefreshView)
-
-from usuarios.views import UsuarioLogView
+from .views import ListaUsuariosView, UsuarioLogView
 
 urlpatterns = [
-    # Autenticação JWT
-    path("token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
-    path("token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
-    # Logs
-    path("usuario-logs/<uuid:pk>/", UsuarioLogView.as_view(), name="usuario_logs"),
+    path("", ListaUsuariosView.as_view(), name="usuario-lista"),
+    path("<uuid:pk>/logs/", UsuarioLogView.as_view(), name="usuario-logs"),
 ]

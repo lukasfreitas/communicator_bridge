@@ -60,7 +60,6 @@ class WebhookTelegramAPIView(APIView):
     permission_classes = []
 
     def post(self, request, *args, **kwargs):
-        print(request.data)
         serializer = TelegramUpdateSerializer(data=request.data)
         try:
             serializer.is_valid(raise_exception=True)
