@@ -1,14 +1,13 @@
 import uuid
-
-from auditlog.registry import auditlog
-from django.contrib.auth.models import AbstractUser, Group
 from django.db import models
+from django.contrib.auth.models import AbstractUser, Group
 from django.utils.translation import gettext_lazy as _
+from auditlog.registry import auditlog
 
 
 class Usuario(AbstractUser):
     """
-    Modelo de usuário customizado.
+    Modelo de usuário unificado para Atendentes, Contatos e Administradores.
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 
@@ -23,12 +22,18 @@ class Usuario(AbstractUser):
         default=TipoUsuario.CONTATO,
         verbose_name=_("Tipo de Usuário"),
     )
+    telefone = models.CharField(
+        max_length=20,
+        unique=True,
+        null=True,
+        blank=True,
+        help_text="Número de telefone do usuário (se aplicável)."
+    )
 
     def save(self, *args, **kwargs):
-        # Antes de salvar, garantimos que o usuário seja atribuído ao grupo correto.
         super().save(*args, **kwargs)
         if self.tipo_usuario:
-            group_name = self.get_tipo_usuario_display()  # Pega o nome legível do choice
+            group_name = self.get_tipo_usuario_display()
             group, created = Group.objects.get_or_create(name=group_name)
             self.groups.add(group)
 

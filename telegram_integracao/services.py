@@ -46,9 +46,19 @@ class TelegramApiClient:
         return response if response else None
     
 
-    def sendMessage(self, msg:str) -> dict:
-        self.logger.debug(f"Enviando mensagem: {msg}")
-        data = {"text": msg}
+    def sendMessage(self, chat_id: str, text: str) -> dict:
+        """
+        Envia uma mensagem de texto para um chat específico no Telegram.
+
+        Args:
+            chat_id: O ID do chat para onde a mensagem será enviada.
+            text: O conteúdo da mensagem de texto.
+
+        Returns:
+            A resposta da API do Telegram em formato de dicionário ou None em caso de falha.
+        """
+        self.logger.debug(f"Enviando mensagem para o chat_id {chat_id}: {text}")
+        data = {"chat_id": chat_id, "text": text}
         response = self.Post("sendMessage", data)
         if response and response.get("ok"):
             self.logger.debug("Mensagem enviada com sucesso.")

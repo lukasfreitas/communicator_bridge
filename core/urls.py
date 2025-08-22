@@ -19,6 +19,7 @@ urls_api_v1 = [
     # Apps
     path('usuarios/', include('usuarios.urls')),
     path('canais/', include('Canais.urls')),
+    path('mensagens/', include('mensagens.urls')),
     path('integracoes/telegram/', include('telegram_integracao.urls')),
 ]
 

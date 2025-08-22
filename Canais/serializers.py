@@ -7,5 +7,5 @@ class CanalSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = Canal
-        fields = ['id', 'nome', 'tipo', 'ativo']
+        fields = ['id', 'nome', 'tipo', 'ativo', 'configuracao']
         read_only_fields = ['id']

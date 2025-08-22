@@ -26,6 +26,7 @@ class Canal(models.Model):
     )
     data_criacao = models.DateTimeField(auto_now_add=True)
     data_atualizacao = models.DateTimeField(auto_now=True)
+    ativo = models.BooleanField(default=True, help_text="Indica se o canal está ativo")
 
     class Meta:
         verbose_name_plural = "Canais"

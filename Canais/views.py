@@ -11,7 +11,7 @@ class CanalListaCriaView(generics.ListCreateAPIView):
     """
     queryset = Canal.objects.all()
     serializer_class = CanalSerializer
-    permission_classes = [IsAuthenticated, IsAdministrador]
+    # permission_classes = [IsAdministrador]
 
 class CanalDetalheAtualizaDeletaView(generics.RetrieveUpdateDestroyAPIView):
     """
@@ -20,4 +20,4 @@ class CanalDetalheAtualizaDeletaView(generics.RetrieveUpdateDestroyAPIView):
     """
     queryset = Canal.objects.all()
     serializer_class = CanalSerializer
-    permission_classes = [IsAuthenticated, IsAdministrador]
+    # permission_classes = [IsAdministrador]
