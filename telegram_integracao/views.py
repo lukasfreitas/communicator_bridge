@@ -6,7 +6,7 @@ from rest_framework import status, serializers
 from django.conf import settings
 from django.http import JsonResponse
 from django.urls import reverse
-from .services import TelegramApiClient
+# from .services import TelegramApiClient
 from .serializers import TelegramUpdateSerializer
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
@@ -16,9 +16,10 @@ from django.utils.decorators import method_decorator
 @method_decorator(csrf_exempt, name='dispatch')
 class TelegramGetmeView(APIView):
     def get(self, request, *args, **kwargs):
-        telegram_service = TelegramApiClient(settings.TELEGRAM_BOT_ACCESS_TOKEN)
-        api_response = telegram_service.Post("getMe")
-        return JsonResponse(api_response)
+        # telegram_service = TelegramApiClient(settings.TELEGRAM_BOT_ACCESS_TOKEN)
+        # api_response = telegram_service.Post("getMe")
+        # return JsonResponse(api_response)
+        return JsonResponse({"status": "ok"}, status=200)
 
 # Sua view para configurar o webhook
 @method_decorator(csrf_exempt, name='dispatch')
@@ -27,7 +28,7 @@ class TelegramWebhookConfigView(APIView):
     permission_classes = []
 
     def dispatch(self, request, *args, **kwargs):
-        self.telegram_service = TelegramApiClient(settings.TELEGRAM_BOT_ACCESS_TOKEN)
+         # self.telegram_service = TelegramApiClient(settings.TELEGRAM_BOT_ACCESS_TOKEN)
         return super().dispatch(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):

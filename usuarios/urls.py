@@ -1,7 +1,11 @@
-from django.urls import path
-from .views import ListaUsuariosView, UsuarioLogView
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from . import views
 
-urlpatterns = [
-    path("", ListaUsuariosView.as_view(), name="usuario-lista"),
-    path("<uuid:pk>/logs/", UsuarioLogView.as_view(), name="usuario-logs"),
-]
+# O router gera as URLs para o ViewSet (list, create, retrieve, update, destroy)
+# e também para a action customizada 'logs'.
+router = DefaultRouter()
+router.register(r"", views.UsuarioViewSet, basename="usuario")
+
+# As urlpatterns do app agora são simplesmente as URLs geradas pelo router.
+urlpatterns = router.urls

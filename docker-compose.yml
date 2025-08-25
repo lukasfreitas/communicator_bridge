@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  db:
+  postgres:
     image: postgres:13
     volumes:
       - postgres_data:/var/lib/postgresql/data/
@@ -10,20 +10,22 @@ services:
       - POSTGRES_USER=user
       - POSTGRES_PASSWORD=password
 
-  web:
-    build: .
-    command: python manage.py runserver 0.0.0.0:8001
+  backend:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
     volumes:
       - .:/app
+      - /app/.venv
     ports:
       - "8001:8001"
     depends_on:
-      - db
+      - postgres
     environment:
       - DB_NAME=communicator_bridge
       - DB_USER=user
       - DB_PASS=password
-      - DB_HOST=db
+      - DB_HOST=postgres
       - DB_PORT=5432
 
 volumes:

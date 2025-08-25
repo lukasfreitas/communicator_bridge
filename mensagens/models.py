@@ -65,7 +65,7 @@ class Mensagem(models.Model):
     class Meta:
         verbose_name = "Mensagem"
         verbose_name_plural = "Mensagens"
-        ordering = ['-data_envio'] # Ordena as mensagens da mais nova para a mais antiga
+        ordering = ['-data_envio']
 
     def __str__(self):
         return f"De {self.remetente} para {self.destinatario} em {self.data_envio:%d/%m/%Y %H:%M}"
